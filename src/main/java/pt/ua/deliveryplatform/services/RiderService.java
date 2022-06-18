@@ -8,6 +8,8 @@ import pt.ua.deliveryplatform.dto.CreateRiderDto;
 import pt.ua.deliveryplatform.model.Rider;
 import pt.ua.deliveryplatform.repositories.RiderRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +39,23 @@ public class RiderService {
         } else {
             return new ResponseEntity<>(findRider.get(), HttpStatus.OK);
         }
+    }
+
+    public List<Rider> getAllAvailableRiders() {
+        Iterable<Rider> allRiders = this.riderRepository.findAll();
+        List<Rider> availableRiders = new ArrayList<>();
+        for(Rider rider: allRiders){
+            if(!rider.isBusy()){
+               availableRiders.add(rider);
+            }
+        }
+        return availableRiders;
+    }
+
+    public void toggleRider(Integer riderId){
+        Rider rider = riderRepository.findById(riderId).orElseThrow();
+        rider.setBusy(!rider.isBusy());
+        riderRepository.save(rider);
     }
 
 }
