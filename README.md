@@ -13,4 +13,6 @@ Adam Komorowski - DevOps Master, Developer
 
 
 Other repositories: </br>
-  [Clothes service](https://github.com/komorowskiadam/clothes-backend)
+  [Clothes backend](https://github.com/TQS-Project-2022/clothes-backend.git)
+  [Clothes frontend](https://github.com/TQS-Project-2022/clothes-frontend.git)
+  
